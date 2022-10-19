@@ -56,11 +56,14 @@ function firstTo40() {
 
 function lastTo50() {
   // Set the grade of the last student to 50.
+  let last = grades.legnth;
+  grades[last] = 50
   outputEl.innerHTML = "Last grade to 50";
 }
 
 function randomTo100() {
   // Set the grade of a random student to 100.
+  
   outputEl.innerHTML = "Random grade to 100";
 }
 
