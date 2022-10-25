@@ -7,7 +7,7 @@ let goBtnEl = document.getElementById("go");
 let menuEl = document.getElementById("menu");
 
 // Global Variable
-let grades = [60, 70, 80, 65, 90, 83];
+let grades = [60, 70, 80, 65, 90, 83, 40, 40];
 let maxGrade = 100; // grade values should be b/t 0 and max
 
 // Display Data
@@ -21,7 +21,9 @@ function mainMenu() {
   let selection = menuEl.value;
 
   // Take action based on menu selection
-  if (selection === "first40") {
+  if (selection === "reset"){
+    resetAll();
+  }else if (selection === "first40") {
     firstTo40();
   } else if (selection === "last50") {
     lastTo50();
@@ -48,6 +50,11 @@ function mainMenu() {
 // ******************************************************
 // MENU SELECTION FUNCTIONS
 // ******************************************************
+
+function resetAll() {
+  grades = [60, 70, 80, 65, 90, 83, 40, 40];
+}
+
 function firstTo40() {
   // Set the grade of the first student to 40.
   grades[0] = 40
@@ -70,31 +77,52 @@ function randomTo100() {
 
 function addRandomGrade() {
   // Add a random grade between 0 and 100 to the end of the array.
+  let randomGrade = randomInt(0,101)
+  grades.push(randomGrade)
   outputEl.innerHTML = "Add random grade";
 }
 
 function removeLastGrade() {
   // Remove the last grade.
+  let index = grades.indexOf(grades.length-1)
+  grades.splice(index, 1)
   outputEl.innerHTML = "Remove the last grade";
 }
 
 function countBelow50() {
   // Count how many grades are below 50.  Output the result.
-  outputEl.innerHTML = "Count grades below 50";
+  let count = 0;
+  for ( let i = 0; i < grades.length; i++ ) {
+    if(grades[i] < 50 ){
+      count++;
+    }
+  }
+  outputEl.innerHTML = `There are ${count} grades below 50`;
 }
 
 function lowGradesTo50() {
   // Change all grades that are below 50 to be equal to 50.
+  for ( let i = 0; i < grades.length; i++ ) {
+    if(grades[i] < 50 ){
+      grades[i] = 50
+    }
+  }
   outputEl.innerHTML = "Change low grades to 50";
 }
 
 function increaseGradesBy10() {
   // Increase each grade by 10%.
+  for ( let i = 0; i < grades.length; i++ ) {
+    grades[i] += 10
+  }
   outputEl.innerHTML = "Increase all grades by 10%";
 }
 
 function decreaseGradesBy10() {
   // Decrease each grade by 10%.
+  for ( let i = 0; i < grades.length; i++ ) {
+    grades[i] -= 10
+  }
   outputEl.innerHTML = "Decrease all grades by 10%";
 }
 
