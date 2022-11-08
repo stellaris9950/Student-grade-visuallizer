@@ -70,7 +70,7 @@ function lastTo50() {
 
 function randomTo100() {
   // Set the grade of a random student to 100.
-  let random = randomInt(0,6)
+  let random = randomInt(0, grades.length)
   grades[random] = 100
   outputEl.innerHTML = "Random grade to 100";
 }
@@ -80,6 +80,8 @@ function addRandomGrade() {
   let randomGrade = randomInt(0,101)
   grades.push(randomGrade)
   outputEl.innerHTML = "Add random grade";
+  
+  
 }
 
 function removeLastGrade() {
